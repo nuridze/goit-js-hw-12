@@ -1,18 +1,28 @@
-function imgTemplate(hit) {
-    const {
-      largeImageURL,
-      webformatURL,
-      tags,
-      likes,
-      views,
-      comments,
-      downloads,
-    } = hit;
-    return `<li class="list-item"><a href="${largeImageURL}">
-            <img class="item-img" src="${webformatURL}" alt="${tags}" ></a><div class="container"><p><b>Likes: </b><br>${likes}</p><p><b>Views: </b><br>${views}</p><p><b>Comments: </b><br>${comments}</p><p><b>Downloads: </b><br>${downloads}</p>
-            </div></li>`;
+import { lightbox } from '../main.js';
+
+export function createGalleryMarkup(images, append = true) {
+  const gallery = document.querySelector('.gallery');
+  // gallery.innerHTML = '';
+  const markup = images
+    .map((image) => `
+      <div class="photo-card">
+        <a href="${image.largeImageURL}" target="_blank">
+          <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
+        </a>
+        <div class="info">
+          <p><i class="img-text">Likes </i><span>${image.likes}</span></p>
+          <p><i class="img-text">Views </i><span>${image.views}</span></p>
+          <p><i class="img-text">Comments </i><span>${image.comments}</span></p>
+          <p><i class="img-text">Downloads </i><span>${image.downloads}</span></p>
+        </div>
+      </div>
+    `)
+    .join('');
+  if (append) {
+    gallery.insertAdjacentHTML('beforeend', markup);
+  } else {
+    gallery.innerHTML = markup;
   }
-  
-  export function imgsTemplate(hits) {
-    return hits.map(imgTemplate).join('');
-  }
+
+  lightbox.refresh();
+}
