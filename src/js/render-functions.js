@@ -1,18 +1,35 @@
-function imgTemplate(hit) {
-  const {
-    largeImageURL,
-    webformatURL,
-    tags,
-    likes,
-    views,
-    comments,
-    downloads,
-  } = hit;
-  return `<li class="list-item"><a href="${largeImageURL}">
-          <img class="item-img" src="${webformatURL}" alt="${tags}" ></a><div class="container"><p><b>Likes: </b><br>${likes}</p><p><b>Views: </b><br>${views}</p><p><b>Comments: </b><br>${comments}</p><p><b>Downloads: </b><br>${downloads}</p>
-          </div></li>`;
-}
+'use strict';
 
-export function imgsTemplate(hits) {
-  return hits.map(imgTemplate).join('');
-}
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
+const refs = {
+    imageElem: document.querySelector('.gallery'),
+};
+
+const gallery = new SimpleLightbox('.gallery a', {
+    captions: true,
+    captionDelay: 250,
+    captionsData: 'alt',
+  });
+
+export default function renderImages(pictures) {
+    const markup = pictures
+    .map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) =>
+        `<li class="gallery-item">
+            <a href="${largeImageURL}">
+                <img src="${webformatURL}" alt="${tags}""/>
+                <div class="img-info">
+                    <p class="info-item"><b>Likes:</b>${likes}</p>
+                    <p class="info-item"><b>Views:</b>${views}</p>
+                    <p class="info-item"><b>Comments:</b>${comments}</p>
+                    <p class="info-item"><b>Downloads:</b>${downloads}</p>
+                </div>
+            </a>
+        </li>`)
+    .join('');
+
+    refs.imageElem.insertAdjacentHTML('beforeend', markup);
+
+    gallery.refresh();
+};

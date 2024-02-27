@@ -1,4 +1,8 @@
 /* Reset styles */
+* {
+  box-sizing: border-box;
+}
+
 h1,
 h2,
 h3,
@@ -13,10 +17,11 @@ p:last-child {
   margin-bottom: 0;
 }
 
-ul {
+ul, li {
   margin: 0;
   padding: 0;
   list-style: none;
+  box-sizing: border-box;
 }
 
 a {
@@ -26,6 +31,7 @@ a {
 
 button {
   cursor: pointer;
+  outline: 0;
 }
 
 img {
