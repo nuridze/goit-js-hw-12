@@ -4,25 +4,29 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
-    
+    <title>Serj's HW-11</title>
     
     <script type="module" crossorigin src="/goit-js-hw-12/commonHelpers.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-a55100af.js">
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-527658dd.js">
     <link rel="stylesheet" href="/goit-js-hw-12/assets/vendor-cf6910df.css">
-    <link rel="stylesheet" href="/goit-js-hw-12/assets/index-61430a1c.css">
+    <link rel="stylesheet" href="/goit-js-hw-12/assets/index-cd7db8af.css">
   </head>
   <body>
-    <form>
-      <input type="text" name="input" placeholder="Search images..." />
-      <button type="submit">Search</button>
+    <form class="form">
+      <div class="img-input">
+        <input type="text" name="image" id="search-img" placeholder="Search images..." />
+        <button type="submit" data-search>Search</button>
+      </div>
     </form>
-    <ul class="gallery"></ul>
-    <div class="loader"></div>
-    <div class="btn-loading container">
-      <button type="button" class="btn-load">Load more</button>
+
+
+    <div class="gallery"></div>
+    <div class="backdrop">
+      <span class="loader"></span>
     </div>
-    <div class="loader"></div>
+
+    <button type="button" class="load-btn hidden" data-action="load-more">Load more</button>
+
     
   </body>
 </html>
